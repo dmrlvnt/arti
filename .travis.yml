@@ -8,7 +8,7 @@ install:
 - bin/ci
 after_success:
 - if [ "$TRAVIS_BRANCH" == "master" ]; then docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
-  docker push orangeopensource/artifactory-resource; fi
+  docker push dmrlvnt/artifactory-resource; fi
 env:
   global:
   - secure: GuLWAheAr3K+oKopYpsFtGMpE8sZfTObz649GBqszW5sl2MmcxHHN5zWodbpSuxF3ssIR2FMtgBba5OWarEZNHP4R83Lr0EG5hkyKr06WuRvzPrt3IvNa4jBeW7WKmzb+dCFDUQu2n3mDeC9sHk3nGjXKHxzSd4tSraeg9QDvXTjD+OVppAvZ1cYnzgelsiI2yb7zhYz5XZHN+hznvhy2zdo2qYPCwh8mFr/7UIy8VDcSX14AzoWD/Qytsah/rH4AG1LvdMo4Vg3QnBV1jQAmDJYUCwhFakjtwVccMtNILCs32UGFqfHcVuRbEGB+VpKIHYVW1zVYMREEos3/COzP5I0t3nJuB/oHxyYaKokFVorM9EilaEyNGgj5gzxRQnzMBjzJPa6PSbIOZ3h4DgtuqvY+Kn+dEypJ0BT6fsNKUteyThNGbvjEjtEzRNfXgu69Akr6ntsnIqTC9aLNKVAvZLmTXlUuKCS9C24lY6/z36Bpl7jnoFQNjGxCev3VO9dVdleDxa/giiO/bsbQWc10IBigEOo4mLq7J8eESrpI2IlRa7m+d6YdKahbmJCyIyppbuvXTJa8iq1PWc1nBrUG/0pm4emxgaqGkxrs1YJlfg1zwNStMir9iTB8KH08pJX/3ZRm0a82/yaUz9j45orzVug8kc0KGRQx9EyuR6hOdQ=

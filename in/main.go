@@ -16,8 +16,8 @@ import (
 	"github.com/jfrogdev/jfrog-cli-go/artifactory/commands"
 	artutils "github.com/jfrogdev/jfrog-cli-go/artifactory/utils"
 	"github.com/jfrogdev/jfrog-cli-go/utils/config"
-	"github.com/dmrlvnt/arti/model"
-	"github.com/dmrlvnt/arti/utils"
+  "github.com/orange-cloudfoundry/artifactory-resource/model"
+	"github.com/orange-cloudfoundry/artifactory-resource/utils"
 )
 
 type In struct {

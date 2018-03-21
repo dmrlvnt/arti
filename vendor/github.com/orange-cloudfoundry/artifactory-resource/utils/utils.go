@@ -5,7 +5,7 @@ import (
 	artlog "github.com/jfrogdev/jfrog-cli-go/utils/cliutils/log"
 	"github.com/jfrogdev/jfrog-cli-go/utils/config"
 	"github.com/mitchellh/colorstring"
-	"github.com/dmrlvnt/arti/model"
+	"github.com/orange-cloudfoundry/artifactory-resource/model"
 	"io/ioutil"
 	"log"
 	"os"
