@@ -11,12 +11,12 @@ type Source struct {
 	Recursive bool   `json:"recursive"`
 	Flat      bool   `json:"flat"`
 	Regexp    bool   `json:"regexp"`
-	Version   string `json:"version"`
 	LogLevel  string `json:"log_level"`
 	CACert    string `json:"ca_cert"`
 }
 type InParams struct {
 	Filename      string `json:"filename"`
+	Version       string `json:"version"`
 	Notflat       bool   `json:"not_flat"`
 	Threads       int    `json:"threads"`
 	MinSplit      int    `json:"min_split"`

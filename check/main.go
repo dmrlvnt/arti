@@ -7,8 +7,8 @@ import (
 	"github.com/jfrogdev/jfrog-cli-go/artifactory/commands"
 	artutils "github.com/jfrogdev/jfrog-cli-go/artifactory/utils"
 	"github.com/jfrogdev/jfrog-cli-go/utils/config"
-	"github.com/orange-cloudfoundry/artifactory-resource/model"
-	"github.com/orange-cloudfoundry/artifactory-resource/utils"
+	"github.com/dmrlvnt/arti/model"
+	"github.com/dmrlvnt/arti/utils"
 	"os"
 	"path/filepath"
 	"regexp"
@@ -28,6 +28,7 @@ const (
 type Check struct {
 	cmd        *chelper.CheckCommand
 	source     model.Source
+	params     model.InParams
 	artdetails *config.ArtifactoryDetails
 	spec       *artutils.SpecFiles
 }
@@ -78,7 +79,7 @@ func (c Check) RetrieveVersions(results []commands.SearchResult) ([]chelper.Vers
 	if len(results) == 0 {
 		return versions, nil
 	}
-	if c.source.Version == "" {
+	if c.params.Version == "" {
 		for _, file := range results {
 			versions = append(versions, chelper.Version{file.Path})
 		}
@@ -97,14 +98,14 @@ func (c Check) RetrieveVersions(results []commands.SearchResult) ([]chelper.Vers
 	return versions, nil
 }
 func (c *Check) RetrieveRange() (semver.Range, error) {
-	rangeSem, err := semver.ParseRange(c.SanitizeVersion(c.source.Version))
+	rangeSem, err := semver.ParseRange(c.SanitizeVersion(c.params.Version))
 	if err != nil {
 		return nil, errors.New("Error when trying to create semver range: " + err.Error())
 	}
 	semverPrevious := c.RetrieveSemverFilePrevious()
 	if semverPrevious.Path != "" {
 		prevRangeSem, _ := semver.ParseRange(">" + semverPrevious.Version.String())
-		c.source.Version += " && >" + semverPrevious.Version.String()
+		c.params.Version += " && >" + semverPrevious.Version.String()
 		rangeSem = rangeSem.AND(prevRangeSem)
 	}
 	return rangeSem, nil
@@ -137,7 +138,7 @@ func (c Check) ResultsToSemverFilesFiltered(results []commands.SearchResult, ran
 				"[cyan]Skipping[reset] file '[blue]%s[reset]' with version '[blue]%s[reset]' because it doesn't satisfy range '[blue]%s[reset]' [reset]",
 				file.Path,
 				semverFile.Version.String(),
-				c.source.Version,
+				c.params.Version,
 			)
 			continue
 		}
